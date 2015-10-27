@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="cmd"/> 
+
+	<package name="default" namespace="/" extends="json-default">
+		<global-results>
+			<result type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+			<result name="error">result.jsp</result>
+			<result name="finish">result.jsp</result>
+			<result name="input">result.jsp</result>
+			<result name="login">index.html</result>
+			<result name="xml">xml.jsp</result>
+			<result name="stream" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+        
+		<!-- User -->
+		<action name="entry" class="WeiXingAction" method="entry"/>
+        
+	</package>
+</struts>
